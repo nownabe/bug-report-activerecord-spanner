@@ -1,0 +1,100 @@
+Fetching https://github.com/nownabe/ruby-spanner-activerecord.git
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...
+Using ruby2_keywords 0.0.5
+Using google-cloud-errors 1.3.0
+Using google-protobuf 3.21.9 (x86_64-linux)
+Using concurrent-ruby 1.1.10
+Using minitest 5.16.3
+Using faraday-net_http 3.0.2
+Using jwt 2.5.0
+Using memoist 0.16.2
+Using multi_json 1.15.0
+Using os 1.1.4
+Using public_suffix 5.0.0
+Using bundler 2.3.21
+Using googleapis-common-protos-types 1.4.0
+Using i18n 1.12.0
+Using tzinfo 2.0.5
+Using faraday 2.7.1
+Using google-cloud-env 1.6.0
+Using faraday-retry 2.0.0
+Using google-cloud-core 1.6.0
+Using activesupport 7.0.4
+Using grpc 1.50.0 (x86_64-linux)
+Using activemodel 7.0.4
+Using googleapis-common-protos 1.3.12
+Using addressable 2.8.1
+Using activerecord 7.0.4
+Using grpc-google-iam-v1 1.2.0
+Using signet 0.17.0
+Using googleauth 1.3.0
+Using gapic-common 0.15.1
+Using google-cloud-spanner-admin-database-v1 0.11.0
+Using google-cloud-spanner-admin-instance-v1 0.8.0
+Using google-cloud-spanner-v1 0.13.0
+Using google-cloud-spanner 2.16.1
+Using activerecord-spanner-adapter 1.2.2 from https://github.com/nownabe/ruby-spanner-activerecord.git (at schema-load-ruby@d69eb94)
+Dropped database 'test'
+Created database 'test'
+-- create_table(:posts, {:force=>true})
+   -> 0.0101s
+D, [2022-11-25T13:10:53.899215 #1547166] DEBUG -- :   [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = @p1 LIMIT @p2[0m
+D, [2022-11-25T13:10:53.907340 #1547166] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  [1m[35mBEGIN[0m
+D, [2022-11-25T13:10:53.909234 #1547166] DEBUG -- :   [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES (@p1, @p2, @p3, @p4)[0m
+D, [2022-11-25T13:10:53.910217 #1547166] DEBUG -- :   [1m[35mSQL (0.7ms)[0m  [1m[35mCOMMIT[0m
+Dropped database 'test'
+Created database 'test'
+Run options: --seed 60061
+
+# Running:
+
+D, [2022-11-25T13:10:53.967026 #1547166] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+D, [2022-11-25T13:10:53.967386 #1547166] DEBUG -- :   [1m[35mSQL (0.0ms)[0m  [1m[35mBEGIN[0m
+D, [2022-11-25T13:10:53.969701 #1547166] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  [1m[31mROLLBACK[0m
+D, [2022-11-25T13:10:53.969827 #1547166] DEBUG -- :   [1m[35m (2.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (0)[0m
+E
+
+Finished in 0.025525s, 39.1772 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+SchemaLoadTest#test_load_schema:
+ActiveRecord::StatementInvalid: Google::Cloud::InvalidArgumentError: 3:Value has type INT64 which cannot be inserted into column version, which has type STRING [at 1:51]
+INSERT INTO `schema_migrations` (version) VALUES (0)
+                                                  ^. debug_error_string:{UNKNOWN:Error received from peer ipv6:%5B::1%5D:9010 {created_time:"2022-11-25T13:10:53.969139946+09:00", grpc_status:3, grpc_message:"Value has type INT64 which cannot be inserted into column version, which has type STRING [at 1:51]\nINSERT INTO `schema_migrations` (version) VALUES (0)\n                                                  ^"}}
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/google-cloud-spanner-2.16.1/lib/google/cloud/spanner/results.rb:314:in `rescue in from_enum'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/google-cloud-spanner-2.16.1/lib/google/cloud/spanner/results.rb:305:in `from_enum'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/google-cloud-spanner-2.16.1/lib/google/cloud/spanner/results.rb:332:in `execute_query'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/google-cloud-spanner-2.16.1/lib/google/cloud/spanner/session.rb:348:in `execute_query'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/activerecord_spanner_adapter/connection.rb:214:in `execute_sql_request'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/activerecord_spanner_adapter/connection.rb:210:in `execute_query'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/active_record/connection_adapters/spanner/database_statements.rb:43:in `block (3 levels) in execute'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/connection_adapters/abstract/transaction.rb:319:in `block in within_new_transaction'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/connection_adapters/abstract/transaction.rb:317:in `within_new_transaction'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/connection_adapters/abstract/database_statements.rb:316:in `transaction'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/active_record/connection_adapters/spanner/database_statements.rb:129:in `transaction'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/active_record/connection_adapters/spanner/database_statements.rb:42:in `block (2 levels) in execute'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/share_lock.rb:187:in `yield_shares'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/dependencies/interlock.rb:41:in `permit_concurrent_loads'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/active_record/connection_adapters/spanner/database_statements.rb:40:in `block in execute'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `handle_interrupt'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:25:in `block in synchronize'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `handle_interrupt'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/concurrency/load_interlock_aware_monitor.rb:21:in `synchronize'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/connection_adapters/abstract_adapter.rb:765:in `block in log'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activesupport-7.0.4/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/connection_adapters/abstract_adapter.rb:756:in `log'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/bundler/gems/ruby-spanner-activerecord-d69eb942b96e/lib/active_record/connection_adapters/spanner/database_statements.rb:38:in `execute'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/connection_adapters/abstract/schema_statements.rb:1236:in `assume_migrated_upto_version'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/schema.rb:59:in `define'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/schema.rb:50:in `define'
+    /home/shogow/src/github.com/nownabe/bug-report-activerecord-spanner/db/schema.rb:13:in `<top (required)>'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/tasks/database_tasks.rb:377:in `load'
+    /home/shogow/.asdf/installs/ruby/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.4/lib/active_record/tasks/database_tasks.rb:377:in `load_schema'
+    /home/shogow/src/github.com/nownabe/bug-report-activerecord-spanner/test.rb:67:in `test_load_schema'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
