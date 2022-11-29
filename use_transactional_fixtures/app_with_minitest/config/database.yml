@@ -1,0 +1,15 @@
+default: &default
+  adapter: spanner
+  project: my-project
+  instance: app-with-minitest
+  database: app-with-minitest
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: app-with-minitest-test
+
+production:
+  <<: *default
