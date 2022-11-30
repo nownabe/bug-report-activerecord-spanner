@@ -1,0 +1,15 @@
+default: &default
+  adapter: spanner
+  project: my-project
+  instance: example-app
+  database: example-app
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: example-app-test
+
+production:
+  <<: *default
