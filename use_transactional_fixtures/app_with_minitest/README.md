@@ -26,11 +26,13 @@ rm -rf .git
 vi Gemfile
 bundle install
 vi config/database.yml
-vi lib/tasks/spanner.rake
+vi lib/tasks/spanner.rake # Patch for fixing bug
+vi test/test_helper.rb # Patch for fixing bug
 bin/rails spanner:instance:create
 bin/rails g model Post text:string
 bin/rails db:create
 bin/rails db:migrate
+vi test/models/post_test.rb
 bin/rails test
 ```
 
