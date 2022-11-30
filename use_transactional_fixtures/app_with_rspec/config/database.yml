@@ -1,0 +1,15 @@
+default: &default
+  adapter: spanner
+  project: my-project
+  instance: app-with-rspec
+  database: app-with-rspec
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: app-with-rspec-test
+
+production:
+  <<: *default
